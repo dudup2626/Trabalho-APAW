@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - StickerSwap 2026</title>
+  <meta name="description" content="Sign in to your StickerSwap account to start trading FIFA World Cup 2026 stickers.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="auth-page">
+    <!-- Visual Side -->
+    <div class="auth-visual">
+      <div class="auth-visual-content">
+        <h1 class="auth-visual-title">Welcome Back!</h1>
+        <p class="auth-visual-description">
+          Sign in to access your sticker collection, find trade matches, and connect with collectors worldwide.
+        </p>
+        
+        <!-- Illustration -->
+        <svg class="auth-visual-illustration" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background elements -->
+          <circle cx="200" cy="150" r="120" fill="white" fill-opacity="0.1"/>
+          <circle cx="100" cy="80" r="40" fill="white" fill-opacity="0.1"/>
+          <circle cx="320" cy="200" r="50" fill="white" fill-opacity="0.1"/>
+          
+          <!-- Sticker Album -->
+          <rect x="130" y="60" width="140" height="180" rx="8" fill="white" fill-opacity="0.9"/>
+          <rect x="140" y="70" width="120" height="160" rx="4" fill="#f5f5f5"/>
+          
+          <!-- Stickers on album -->
+          <rect x="150" y="80" width="45" height="60" rx="4" fill="#ffd000"/>
+          <rect x="205" y="80" width="45" height="60" rx="4" fill="#00c2ff"/>
+          <rect x="150" y="150" width="45" height="60" rx="4" fill="#00d26a"/>
+          <rect x="205" y="150" width="45" height="60" rx="4" fill="#ff4d00"/>
+          
+          <!-- Floating stickers -->
+          <rect x="60" y="120" width="50" height="70" rx="6" fill="white" fill-opacity="0.95" transform="rotate(-15 85 155)"/>
+          <rect x="290" y="90" width="50" height="70" rx="6" fill="white" fill-opacity="0.95" transform="rotate(15 315 125)"/>
+          <rect x="280" y="180" width="50" height="70" rx="6" fill="white" fill-opacity="0.95" transform="rotate(-10 305 215)"/>
+          
+          <!-- Decorative stars -->
+          <path d="M50 50 L55 65 L70 65 L58 75 L63 90 L50 80 L37 90 L42 75 L30 65 L45 65 Z" fill="white" fill-opacity="0.5"/>
+          <path d="M350 60 L353 70 L363 70 L355 77 L358 87 L350 80 L342 87 L345 77 L337 70 L347 70 Z" fill="white" fill-opacity="0.5"/>
+          <path d="M360 240 L363 250 L373 250 L365 257 L368 267 L360 260 L352 267 L355 257 L347 250 L357 250 Z" fill="white" fill-opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Form Side -->
+    <div class="auth-form-container">
+      <div class="auth-form-wrapper">
+        <!-- Logo -->
+        <a href="/" class="auth-logo">
+          <div style="width: 44px; height: 44px; background: var(--gradient-primary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          StickerSwap 2026
+        </a>
+        
+        <h2 class="auth-title">Sign in to your account</h2>
+        <p class="auth-subtitle">Enter your credentials to continue</p>
+        
+        <!-- Login Form -->
+        <form class="auth-form" id="loginForm">
+          <div class="form-group">
+            <label class="form-label form-label-required" for="email">Email Address</label>
+            <div class="input-group">
+              <svg class="input-group-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label form-label-required" for="password">Password</label>
+            <div class="input-group">
+              <svg class="input-group-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-input" 
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              >
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: var(--space-sm);">
+              <a href="/forgot-password.html" style="font-size: var(--text-sm); color: var(--color-primary); font-weight: var(--font-medium);">Forgot password?</a>
+            </div>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 0;">
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="submitBtn">
+              Sign In
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+        
+        <p class="auth-footer">
+          Don't have an account? <a href="/register.html">Create one now</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const form = e.target;
+      
+      // Validate
+      const { isValid } = StickerSwap.Validation.validateForm(form, {
+        email: ['required', 'email'],
+        password: ['required', (v) => v.length >= 6 || 'Password must be at least 6 characters']
+      });
+      
+      if (!isValid) return;
+      
+      // Show loading
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+      
+      try {
+        const result = await StickerSwap.API.login({
+          email: form.email.value,
+          password: form.password.value
+        });
+        
+        StickerSwap.Toast.success('Welcome back!', 'Login successful');
+        
+        setTimeout(() => {
+          window.location.href = '/dashboard.html';
+        }, 1000);
+      } catch (error) {
+        StickerSwap.Toast.error(error.message || 'Invalid email or password', 'Login failed');
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

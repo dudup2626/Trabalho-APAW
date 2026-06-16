@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - StickerSwap 2026</title>
+  <meta name="description" content="Manage your StickerSwap profile and account settings.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <div class="navbar-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        StickerSwap 2026
+      </a>
+      
+      <div class="navbar-nav">
+        <a href="/dashboard.html" class="navbar-link">Dashboard</a>
+        <a href="/album.html" class="navbar-link">My Album</a>
+        <a href="/trades.html" class="navbar-link">Find Trades</a>
+        <a href="/catalog.html" class="navbar-link">Catalog</a>
+      </div>
+      
+      <div class="navbar-actions">
+        <a href="/profile.html" class="btn btn-ghost">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <button class="btn btn-secondary" onclick="StickerSwap.Auth.logout()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <button class="navbar-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div>
+          <h1 class="page-header-title">Profile Settings</h1>
+          <p class="page-header-description">Manage your account and preferences</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="section" style="padding-top: var(--space-xl);">
+    <div class="container container-narrow">
+      <!-- Profile Header Card -->
+      <div class="profile-header" style="margin-bottom: var(--space-xl);">
+        <div class="profile-header-content">
+          <div class="profile-avatar" id="profileAvatar">AJ</div>
+          <div class="profile-info">
+            <h2 class="profile-name" id="profileName">Alex Johnson</h2>
+            <p class="profile-email" id="profileEmail">alex@example.com</p>
+            <div class="profile-meta">
+              <div class="profile-meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span id="profileCity">New York, USA</span>
+              </div>
+              <div class="profile-meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span id="profileMemberSince">Member since January 2024</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" style="margin-bottom: var(--space-xl);">
+        <button class="tab active" data-tab="general">General</button>
+        <button class="tab" data-tab="security">Security</button>
+        <button class="tab" data-tab="preferences">Preferences</button>
+      </div>
+
+      <!-- General Settings -->
+      <div class="card" id="generalTab">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">General Information</h3>
+            <p class="card-subtitle">Update your personal details</p>
+          </div>
+        </div>
+        
+        <form id="profileForm">
+          <div class="form-group">
+            <label class="form-label form-label-required" for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" class="form-input" value="Alex Johnson" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label form-label-required" for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" value="alex@example.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="city">City</label>
+            <input type="text" id="city" name="city" class="form-input" value="New York">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="country">Country</label>
+            <select class="form-select" id="country" name="country">
+              <option value="">Select Country</option>
+              <option value="US" selected>United States</option>
+              <option value="AR">Argentina</option>
+              <option value="BR">Brazil</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+              <option value="MX">Mexico</option>
+              <option value="ES">Spain</option>
+              <option value="GB">United Kingdom</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="bio">Bio</label>
+            <textarea id="bio" name="bio" class="form-textarea" rows="3" placeholder="Tell other collectors about yourself...">Passionate collector from NYC looking to complete my FIFA World Cup 2026 album!</textarea>
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+              </svg>
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Security Settings -->
+      <div class="card hidden" id="securityTab">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Change Password</h3>
+            <p class="card-subtitle">Update your password to keep your account secure</p>
+          </div>
+        </div>
+        
+        <form id="passwordForm">
+          <div class="form-group">
+            <label class="form-label form-label-required" for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword" name="currentPassword" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label form-label-required" for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" class="form-input" required>
+            <p class="form-hint">Must be at least 8 characters long</p>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label form-label-required" for="confirmPassword">Confirm New Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary" id="changePasswordBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Update Password
+            </button>
+          </div>
+        </form>
+
+        <div style="margin-top: var(--space-2xl); padding-top: var(--space-2xl); border-top: 1px solid var(--color-light-gray);">
+          <h4 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--color-black); margin-bottom: var(--space-md);">Danger Zone</h4>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-lg); background: rgba(255, 68, 68, 0.05); border: 1px solid rgba(255, 68, 68, 0.2); border-radius: var(--radius-lg);">
+            <div>
+              <div style="font-weight: var(--font-semibold); color: var(--color-black);">Delete Account</div>
+              <div style="font-size: var(--text-sm); color: var(--color-dark-gray);">Permanently delete your account and all data</div>
+            </div>
+            <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="card hidden" id="preferencesTab">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Preferences</h3>
+            <p class="card-subtitle">Customize your StickerSwap experience</p>
+          </div>
+        </div>
+        
+        <form id="preferencesForm">
+          <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+            <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--color-primary);">
+              <div>
+                <div style="font-weight: var(--font-medium); color: var(--color-black);">Email Notifications</div>
+                <div style="font-size: var(--text-sm); color: var(--color-dark-gray);">Receive updates about trade proposals and messages</div>
+              </div>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--color-primary);">
+              <div>
+                <div style="font-weight: var(--font-medium); color: var(--color-black);">Trade Alerts</div>
+                <div style="font-size: var(--text-sm); color: var(--color-dark-gray);">Get notified when new trade matches are found</div>
+              </div>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+              <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--color-primary);">
+              <div>
+                <div style="font-weight: var(--font-medium); color: var(--color-black);">Public Profile</div>
+                <div style="font-size: var(--text-sm); color: var(--color-dark-gray);">Allow others to see your collection</div>
+              </div>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: var(--space-md); cursor: pointer;">
+              <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--color-primary);">
+              <div>
+                <div style="font-weight: var(--font-medium); color: var(--color-black);">Newsletter</div>
+                <div style="font-size: var(--text-sm); color: var(--color-dark-gray);">Receive updates about new features and promotions</div>
+              </div>
+            </label>
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end; margin-top: var(--space-xl);">
+            <button type="submit" class="btn btn-primary" id="savePreferencesBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+              </svg>
+              Save Preferences
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script>
+    // Check authentication
+    if (!StickerSwap.Auth.isLoggedIn()) {
+      window.location.href = '/login.html';
+    }
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const tabName = tab.dataset.tab;
+        document.getElementById('generalTab').classList.add('hidden');
+        document.getElementById('securityTab').classList.add('hidden');
+        document.getElementById('preferencesTab').classList.add('hidden');
+        document.getElementById(tabName + 'Tab').classList.remove('hidden');
+      });
+    });
+
+    // Load user data
+    async function loadUserData() {
+      try {
+        const user = await StickerSwap.API.currentUser;
+        if (user) {
+          document.getElementById('profileName').textContent = user.name;
+          document.getElementById('profileEmail').textContent = user.email;
+          document.getElementById('profileCity').textContent = user.city || 'Not specified';
+          document.getElementById('profileAvatar').textContent = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+          document.getElementById('profileMemberSince').textContent = `Member since ${new Date(user.memberSince).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`;
+          
+          // Form values
+          document.getElementById('fullName').value = user.name;
+          document.getElementById('email').value = user.email;
+        }
+      } catch (error) {
+        console.error('Failed to load user data:', error);
+      }
+    }
+
+    // Profile form submission
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('saveProfileBtn');
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+      
+      try {
+        await StickerSwap.API.updateProfile({
+          name: document.getElementById('fullName').value,
+          email: document.getElementById('email').value,
+          city: document.getElementById('city').value
+        });
+        
+        StickerSwap.Toast.success('Profile updated successfully');
+        loadUserData();
+      } catch (error) {
+        StickerSwap.Toast.error('Failed to update profile', 'Error');
+      } finally {
+        btn.classList.remove('btn-loading');
+        btn.disabled = false;
+      }
+    });
+
+    // Password form submission
+    document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+      
+      if (newPass !== confirmPass) {
+        StickerSwap.Toast.error('Passwords do not match', 'Validation Error');
+        return;
+      }
+      
+      if (newPass.length < 8) {
+        StickerSwap.Toast.error('Password must be at least 8 characters', 'Validation Error');
+        return;
+      }
+      
+      const btn = document.getElementById('changePasswordBtn');
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        StickerSwap.Toast.success('Password updated successfully');
+        document.getElementById('passwordForm').reset();
+        btn.classList.remove('btn-loading');
+        btn.disabled = false;
+      }, 1000);
+    });
+
+    // Preferences form submission
+    document.getElementById('preferencesForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('savePreferencesBtn');
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        StickerSwap.Toast.success('Preferences saved');
+        btn.classList.remove('btn-loading');
+        btn.disabled = false;
+      }, 800);
+    });
+
+    // Delete account
+    async function deleteAccount() {
+      const confirmed = await StickerSwap.Modal.confirm({
+        title: 'Delete Account',
+        message: 'This action cannot be undone. All your data, including your sticker collection and trade history, will be permanently deleted.',
+        confirmText: 'Delete Account',
+        confirmClass: 'btn-danger'
+      });
+      
+      if (confirmed) {
+        StickerSwap.Toast.success('Account deleted successfully');
+        setTimeout(() => {
+          StickerSwap.Auth.logout();
+        }, 1500);
+      }
+    }
+
+    // Load user data
+    loadUserData();
+  </script>
+</body>
+</html>

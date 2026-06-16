@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Album - StickerSwap 2026</title>
+  <meta name="description" content="Manage your FIFA World Cup 2026 sticker collection. Track duplicates and missing stickers.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-logo">
+        <div class="navbar-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        StickerSwap 2026
+      </a>
+      
+      <div class="navbar-nav">
+        <a href="/dashboard.html" class="navbar-link">Dashboard</a>
+        <a href="/album.html" class="navbar-link active">My Album</a>
+        <a href="/trades.html" class="navbar-link">Find Trades</a>
+        <a href="/catalog.html" class="navbar-link">Catalog</a>
+      </div>
+      
+      <div class="navbar-actions">
+        <a href="/profile.html" class="btn btn-ghost">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <button class="btn btn-secondary" onclick="StickerSwap.Auth.logout()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <button class="navbar-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div>
+          <h1 class="page-header-title">My Album</h1>
+          <p class="page-header-description">Manage your sticker collection</p>
+        </div>
+        <div class="page-header-actions">
+          <a href="/sticker-add.html" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add Sticker
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <!-- Filters & Search -->
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; justify-content: space-between; margin-bottom: var(--space-xl);">
+        <div class="tabs">
+          <button class="tab active" data-filter="all">All Stickers</button>
+          <button class="tab" data-filter="duplicate">Duplicates</button>
+          <button class="tab" data-filter="missing">Missing</button>
+        </div>
+        
+        <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+          <div class="search-input" style="width: 280px;">
+            <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" class="form-input" id="searchInput" placeholder="Search stickers...">
+          </div>
+          
+          <select class="form-select" id="sortSelect" style="width: 160px;">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="number">Sticker Number</option>
+            <option value="name">Player Name</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Stickers Grid -->
+      <div class="stickers-grid" id="stickersGrid">
+        <!-- Stickers will be loaded here -->
+      </div>
+
+      <!-- Empty State (hidden by default) -->
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18"/>
+          </svg>
+        </div>
+        <h3 class="empty-state-title" id="emptyTitle">No stickers found</h3>
+        <p class="empty-state-description" id="emptyDescription">Start building your collection by adding stickers.</p>
+        <a href="/sticker-add.html" class="btn btn-primary">Add Your First Sticker</a>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination">
+        <button class="pagination-btn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn">2</button>
+        <button class="pagination-btn">3</button>
+        <button class="pagination-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Sticker</h3>
+        <button class="modal-close" onclick="closeEditModal()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm">
+          <input type="hidden" id="editId">
+          <div class="form-group">
+            <label class="form-label">Sticker Number</label>
+            <input type="text" class="form-input" id="editNumber" disabled>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Player Name</label>
+            <input type="text" class="form-input" id="editName" disabled>
+          </div>
+          <div class="form-group">
+            <label class="form-label form-label-required">Type</label>
+            <select class="form-select" id="editType" required>
+              <option value="duplicate">Duplicate</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+          <div class="form-group" id="quantityGroup">
+            <label class="form-label form-label-required">Quantity</label>
+            <input type="number" class="form-input" id="editQuantity" min="1" value="1" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    // Check authentication
+    if (!StickerSwap.Auth.isLoggedIn()) {
+      window.location.href = '/login.html';
+    }
+
+    let currentFilter = 'all';
+    let currentStickers = [];
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentFilter = tab.dataset.filter;
+        loadStickers();
+      });
+    });
+
+    // Load stickers
+    async function loadStickers() {
+      const grid = document.getElementById('stickersGrid');
+      const emptyState = document.getElementById('emptyState');
+      
+      // Show loading skeletons
+      grid.innerHTML = Array(8).fill(`
+        <div class="sticker-card">
+          <div class="sticker-card-image">
+            <div class="skeleton" style="width: 80%; height: 80%;"></div>
+          </div>
+          <div class="sticker-card-content">
+            <div class="skeleton skeleton-text" style="width: 40%;"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text" style="width: 60%;"></div>
+          </div>
+        </div>
+      `).join('');
+      
+      try {
+        currentStickers = await StickerSwap.API.getStickers(currentFilter);
+        
+        if (currentStickers.length === 0) {
+          grid.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          document.getElementById('emptyTitle').textContent = 
+            currentFilter === 'duplicate' ? 'No duplicate stickers' : 
+            currentFilter === 'missing' ? 'No missing stickers' : 'No stickers yet';
+          document.getElementById('emptyDescription').textContent = 
+            currentFilter === 'duplicate' ? 'Add stickers you have duplicates of to start trading.' : 
+            currentFilter === 'missing' ? 'Add stickers you\'re looking for to find trades.' : 'Start building your collection by adding stickers.';
+          return;
+        }
+        
+        emptyState.classList.add('hidden');
+        renderStickers(currentStickers);
+      } catch (error) {
+        StickerSwap.Toast.error('Failed to load stickers', 'Error');
+      }
+    }
+
+    function renderStickers(stickers) {
+      const grid = document.getElementById('stickersGrid');
+      
+      grid.innerHTML = stickers.map(sticker => `
+        <div class="sticker-card">
+          <div class="sticker-card-image">
+            <div class="sticker-card-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sticker-card-content">
+            <div class="sticker-card-number">${sticker.number}</div>
+            <div class="sticker-card-name">${sticker.name}</div>
+            <div class="sticker-card-team">${sticker.team}</div>
+            <div class="sticker-card-meta">
+              <span class="sticker-card-rarity rarity-${sticker.rarity}">
+                ${sticker.rarity === 'legendary' ? '★ ' : ''}${sticker.rarity}
+              </span>
+              ${sticker.type === 'duplicate' ? `<span class="sticker-card-quantity">Qty: ${sticker.quantity}</span>` : '<span class="sticker-card-quantity" style="color: var(--color-primary);">Wanted</span>'}
+            </div>
+            <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+              <button class="btn btn-sm btn-secondary" style="flex: 1;" onclick="openEditModal(${sticker.id})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Edit
+              </button>
+              <button class="btn btn-sm btn-danger" style="flex: 1;" onclick="deleteSticker(${sticker.id})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', debounce((e) => {
+      const search = e.target.value.toLowerCase();
+      const filtered = currentStickers.filter(s => 
+        s.name.toLowerCase().includes(search) || 
+        s.number.toLowerCase().includes(search) ||
+        s.team.toLowerCase().includes(search)
+      );
+      renderStickers(filtered);
+    }, 300));
+
+    function debounce(fn, delay) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+      };
+    }
+
+    // Edit modal functions
+    function openEditModal(id) {
+      const sticker = currentStickers.find(s => s.id === id);
+      if (!sticker) return;
+      
+      document.getElementById('editId').value = sticker.id;
+      document.getElementById('editNumber').value = sticker.number;
+      document.getElementById('editName').value = sticker.name;
+      document.getElementById('editType').value = sticker.type;
+      document.getElementById('editQuantity').value = sticker.quantity || 1;
+      
+      toggleQuantityField(sticker.type);
+      document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+
+    function toggleQuantityField(type) {
+      const group = document.getElementById('quantityGroup');
+      if (type === 'missing') {
+        group.style.display = 'none';
+      } else {
+        group.style.display = 'block';
+      }
+    }
+
+    document.getElementById('editType').addEventListener('change', (e) => {
+      toggleQuantityField(e.target.value);
+    });
+
+    async function saveEdit() {
+      const id = parseInt(document.getElementById('editId').value);
+      const type = document.getElementById('editType').value;
+      const quantity = parseInt(document.getElementById('editQuantity').value) || 1;
+      
+      try {
+        await StickerSwap.API.updateSticker(id, { type, quantity: type === 'duplicate' ? quantity : 0 });
+        StickerSwap.Toast.success('Sticker updated successfully');
+        closeEditModal();
+        loadStickers();
+      } catch (error) {
+        StickerSwap.Toast.error('Failed to update sticker', 'Error');
+      }
+    }
+
+    async function deleteSticker(id) {
+      const confirmed = await StickerSwap.Modal.confirm({
+        title: 'Delete Sticker',
+        message: 'Are you sure you want to remove this sticker from your collection?',
+        confirmText: 'Delete',
+        confirmClass: 'btn-danger'
+      });
+      
+      if (confirmed) {
+        try {
+          await StickerSwap.API.deleteSticker(id);
+          StickerSwap.Toast.success('Sticker deleted');
+          loadStickers();
+        } catch (error) {
+          StickerSwap.Toast.error('Failed to delete sticker', 'Error');
+        }
+      }
+    }
+
+    // Load initial data
+    loadStickers();
+  </script>
+</body>
+</html>
